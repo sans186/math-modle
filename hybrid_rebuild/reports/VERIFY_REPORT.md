@@ -55,6 +55,8 @@ PASS
 3. 支撑材料：`code/`、`code/outputs/records/`、`figures/`、`reports/`。
 4. 原版备份：`../archive/original_before_hybrid_20260912/`。
 
+融合版支撑材料已汇总为 `output/support/C题_融合重算版支撑材料.zip`，并同步生成一页版 `output/support/人工智能工具使用详情.pdf`；压缩包完整性检查通过。
+
 ## 仍需处理的问题
 
 无硬错误。正式提交前仅需按比赛平台要求填写参赛编号、删除或保留 AI 使用声明，并按提交规范打包支撑材料。

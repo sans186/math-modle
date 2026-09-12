@@ -1,0 +1,38 @@
+% !TEX program = xelatex
+\documentclass[fontset=fandol,10pt,a4paper]{ctexart}
+\usepackage[a4paper,top=1.8cm,bottom=1.8cm,left=2.2cm,right=2.2cm]{geometry}
+\usepackage{booktabs,longtable,array,hyperref}
+\usepackage{titlesec}
+\hypersetup{hidelinks}
+\setlength{\parindent}{2em}
+\renewcommand{\arraystretch}{1.12}
+\pagestyle{plain}
+\titleformat{\section}{\centering\zihao{4}\heiti\bfseries}{\chinese{section}、}{0.5em}{}
+\titlespacing*{\section}{0pt}{0.45em}{0.2em}
+\begin{document}
+\begin{center}
+{\zihao{2}\heiti 人工智能工具使用详情}
+\end{center}
+
+\section{工具名称与使用范围}
+本队使用 OpenAI Codex 编码代理辅助完成本题工作，集中使用日期为2026年9月12日。工具在本地项目目录中读取赛题、附件、两版论文、计算记录和排版源文件，并在参赛队授权范围内执行代码、生成图表、编译文档和进行版本管理。
+
+\section{使用目的与阶段}
+\begin{longtable}{p{0.19\textwidth}p{0.69\textwidth}}
+\toprule 阶段 & 具体用途\\\midrule
+版本比较 & 对比原有论文与参考论文在四个问题中的建模假设、信息集、预测方法、滚动调整策略和费用结算口径，提出逐问融合方案。\\
+建模设计 & 辅助明确10分钟能量口径、储能SOC递推、无未来信息泄漏的预测规则、残差80\%分位裕量，以及6:00、12:00、18:00更新时点的8种组合。\\
+程序与结果 & 辅助编写和调试线性规划及全年滚动回测程序，生成5个结果工作簿、逐日记录、参数文件、约束检查和图表源数据。\\
+论文呈现 & 辅助撰写中文LaTeX论文，生成数据图和可编辑DrawIO流程图，更新摘要、正文、表格、参考文献及附录。\\
+验证与版本管理 & 辅助执行文本门禁、数值一致性检查、PDF逐页渲染检查，并保留原版归档、创建Git提交和推送仓库。\\
+\bottomrule
+\end{longtable}
+
+\section{主要提示方式与处理过程}
+主要提示包括：“仔细分析两版的区别，每个问题选择最合适的方法并进行融合”“依据分析重新执行数学建模工作流，同时保留原版”“同步更新人工智能工具使用文档并推送全部结果”。工具据此先归档原版，再依次完成问题分析、建模、编程与图表、流程图、论文写作和最终验收。对于两版方法冲突，采用可实施性优先原则：问题二与问题四的正式策略不读取未来实测值；问题三冻结已执行决策、继承SOC并显式计入调整费用；完美信息结果仅作为理论参照，不作为正式方案。
+
+\section{采纳、修改与验证}
+AI输出未被直接视为最终结论。融合版程序从2025年1月1日开始连续推进SOC，以1月作为预测与状态热身期，正式统计2月1日至12月31日共334日。问题三和问题4-3分别穷举8种更新时间组合；在当前结算口径下，两者均由“不调整”获得最低累计费用。共6,570项逐日及逐组合约束回代全部通过，5个结果工作簿均可重新打开；最终论文完成两遍编译并对19页A4 PDF逐页检查。
+
+参赛队仍需在提交前独立核对题意、模型假设、结算解释、结果文件和本说明，并对最终提交内容承担责任。若本说明与赛题、源程序或可复现输出不一致，应以赛题与经人工核验的计算结果为准。
+\end{document}
