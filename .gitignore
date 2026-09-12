@@ -10,4 +10,5 @@ tmp/
 **/paper/*.toc
 **/paper/missfont.log
 **/paper/main.pdf
+!hybrid_rebuild/paper/main.pdf
 texput.log
