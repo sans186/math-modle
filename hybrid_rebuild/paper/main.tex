@@ -1,0 +1,34 @@
+% !TEX program = xelatex
+\documentclass[fontset=fandol,12pt,a4paper]{ctexart}
+\usepackage[a4paper,top=2.5cm,bottom=2.5cm,left=2.5cm,right=2.5cm]{geometry}
+\usepackage{amsmath,amssymb,bm}
+\usepackage{booktabs,array,longtable,multirow}
+\usepackage{graphicx,float,subcaption}
+\usepackage{xcolor,listings}
+\usepackage[hidelinks]{hyperref}
+\usepackage{titlesec,tocloft}
+\IfFontExistsTF{Times New Roman}{\setmainfont{Times New Roman}}{}
+\IfFontExistsTF{Menlo}{\setmonofont{Menlo}}{}
+\linespread{1.30}\setlength{\parindent}{2em}\setlength{\parskip}{0pt}
+\setlength{\emergencystretch}{2em}
+\ctexset{section/number=\chinese{section},subsection/number=\arabic{section}.\arabic{subsection},subsubsection/number=\arabic{section}.\arabic{subsection}.\arabic{subsubsection}}
+\titleformat{\section}{\centering\zihao{3}\heiti\bfseries}{\chinese{section}、}{0.5em}{}
+\titleformat{\subsection}{\zihao{4}\heiti\bfseries}{\arabic{section}.\arabic{subsection}}{0.6em}{}
+\titleformat{\subsubsection}{\zihao{-4}\heiti\bfseries}{\arabic{section}.\arabic{subsection}.\arabic{subsubsection}}{0.6em}{}
+\lstset{basicstyle=\ttfamily\scriptsize,backgroundcolor=\color{black!3},frame=single,breaklines=true,showstringspaces=false,columns=fullflexible}
+\newcommand{\yuan}{\text{元}}\newcommand{\kwh}{\mathrm{kWh}}\newcommand{\kw}{\mathrm{kW}}
+\newcommand{\papertitle}[1]{\begin{center}{\zihao{2}\heiti\bfseries #1}\end{center}\vspace{0.8em}}
+\newcommand{\abstractcn}[2]{\begin{center}{\zihao{3}\heiti\bfseries 摘要}\end{center}#1\par\vspace{0.8em}{\heiti\bfseries 关键词：}#2\newpage}
+\pagestyle{plain}
+\begin{document}
+\setcounter{page}{1}
+\papertitle{面向预测不确定性的微网购电与储能滚动调度}
+\abstractcn{本文研究含光伏、储能与外部电网的微网购电调度问题。统一建立10分钟步长的能量平衡与储能状态线性规划模型，并核验365日、每日144时段的数据。问题一在确定性条件下得到购电费35,126.95元，较无储能基线降低26.90\%。问题二采用严格向前的同星期与近7日中位数融合预测，叠加历史净负荷残差80\%分位裕量；将1月作为预测与SOC热身期后，2月至12月334日费用为15,386,279.80元，紧急购电427,890.01 kWh。问题三冻结已执行决策、继承SOC，并穷举6:00、12:00、18:00三类更新时间的8种组合；计入正向调整费用后，不调整组合以15,820,108.80元取得最低总费用，说明新增预报并不必然产生净经济收益。问题四仅用历史价格预测未来电价，价格预测MAE为0.0532元/kWh；问题4-2费用为16,108,523.19元，问题4-3同样由不调整组合以16,569,050.38元最优。全部6,570项逐日与逐组合约束回代均通过。结果表明，严格信息集、跨日状态连续和调整成本显式化，是获得可实施调度结论的关键。}{微网调度\quad 线性规划\quad 滚动预测\quad 储能\quad 鲁棒裕度}
+\input{sections/1_restatement}\input{sections/2_analysis}\input{sections/3_assumptions}
+\input{sections/4_symbols}\input{sections/5_problem1}\input{sections/6_problem2}
+\input{sections/7_problem3}\input{sections/8_problem4}\input{sections/9_sensitivity}
+\input{sections/10_evaluation}
+\input{sections/11_ai_declaration}
+\input{sections/12_references}
+\newpage\section*{附录：核心实现与复现}\addcontentsline{toc}{section}{附录：核心实现与复现}\input{sections/A_code}
+\end{document}

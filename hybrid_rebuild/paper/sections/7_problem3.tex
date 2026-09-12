@@ -1,0 +1,12 @@
+\section{问题三：多时点滚动调整}
+\subsection{滚动机制与费用}
+0:00产生原计划$p_{d,t}$，6:00、12:00、18:00将小时光伏预报线性插值到10分钟，并用当日已观测负荷偏差修正剩余时段负荷。每次只优化未执行区间，冻结历史决策并继承上一时段SOC。这一做法属于微网能量管理中常见的滚动时域控制框架\cite{mpc2014,mpc2021}，具体机制如图~\ref{fig:mpc}。
+\begin{figure}[H]\centering\includegraphics[width=\textwidth]{../figures/fig_model_mpc.pdf}
+\caption{多时点光伏预报驱动的滚动购电与储能调度机制}\label{fig:mpc}\end{figure}
+最终正常购电量为$g_{d,t}$。按采用的结算解释，每日总费用为
+\begin{equation}C_d=\sum_t\!\left[\pi_tp_t+1.5\pi_t(g_t-p_t)^++0.5\pi_t(p_t-g_t)^++5\pi_te_t\right].\label{eq:q3cost}\end{equation}
+调整阶段的LP以相对原计划的上调量、下调量作为辅助变量，并保留问题一的SOC和功率约束。
+\subsection{更新时点组合选择}
+对集合$\{6,12,18\}$的全部8个子集逐一进行334日回测。累计费用由低到高的前三种组合为：不调整15,820,108.80元、仅6:00调整16,139,224.08元、仅12:00调整16,496,525.79元。因此正式结果选择“不调整”；这不是省略问题三，而是把是否调整纳入经济性筛选后得到的最优离散策略。最佳非空组合为仅6:00更新，其相对不调整的逐日费用差异见图~\ref{fig:q3saving}。
+\begin{figure}[H]\centering\includegraphics[width=0.90\textwidth]{../figures/fig05_q3_daily_savings.pdf}
+\caption{问题三不调整与最佳非空更新组合的逐日费用差值}\label{fig:q3saving}\end{figure}

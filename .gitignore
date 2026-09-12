@@ -4,9 +4,10 @@ __pycache__/
 .mplconfig/
 tmp/
 
-paper/*.aux
-paper/*.log
-paper/*.out
-paper/*.toc
-paper/missfont.log
+**/paper/*.aux
+**/paper/*.log
+**/paper/*.out
+**/paper/*.toc
+**/paper/missfont.log
+**/paper/main.pdf
 texput.log

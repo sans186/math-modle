@@ -1,0 +1,9 @@
+scope,check,value,limit,passed
+data,date_count,365.0,365,True
+data,unique_dates,365.0,365,True
+data,load_shape_cells,52560.0,52560,True
+data,pv_shape_cells,52560.0,52560,True
+data,price_shape_cells,52560.0,52560,True
+data,forecast_keys,1460.0,1460,True
+data,missing_numeric,0.0,0,True
+data,negative_numeric,0.0,0,True
