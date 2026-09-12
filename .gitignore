@@ -1,0 +1,12 @@
+.DS_Store
+__pycache__/
+*.pyc
+.mplconfig/
+tmp/
+
+paper/*.aux
+paper/*.log
+paper/*.out
+paper/*.toc
+paper/missfont.log
+texput.log

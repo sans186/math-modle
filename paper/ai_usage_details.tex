@@ -1,0 +1,36 @@
+% !TEX program = xelatex
+\documentclass[fontset=fandol,11pt,a4paper]{ctexart}
+\usepackage[a4paper,margin=2.5cm]{geometry}
+\usepackage{booktabs,longtable,array,hyperref}
+\usepackage{titlesec}
+\hypersetup{hidelinks}
+\setlength{\parindent}{2em}
+\renewcommand{\arraystretch}{1.20}
+\pagestyle{plain}
+\titleformat{\section}{\centering\zihao{4}\heiti\bfseries}{\chinese{section}、}{0.5em}{}
+\titlespacing*{\section}{0pt}{0.8em}{0.35em}
+\begin{document}
+\begin{center}
+{\zihao{2}\heiti 人工智能工具使用详情}
+\end{center}
+
+\section{工具名称与版本}
+OpenAI Codex（GPT-5 系列编码代理），使用日期为2026年9月12日。工具运行于本地工作区，围绕本题已有题面、附件、计算记录和论文源文件开展辅助工作。
+
+\section{使用目的与阶段}
+\begin{longtable}{p{0.18\textwidth}p{0.72\textwidth}}
+\toprule 阶段 & 具体用途\\\midrule
+数据与代码 & 辅助检查数据读取、时间索引、单位换算、线性规划接口和约束回代；整理可复现运行说明。\\
+结果核验 & 对照程序输出记录检查摘要、正文、图表和结果工作簿中的关键数值；检查未来信息泄漏、SOC边界和费用口径。\\
+论文呈现 & 辅助组织学术表述、LaTeX排版、图表引用、参考文献格式与2026年竞赛格式合规检查。\\
+\bottomrule
+\end{longtable}
+
+\section{主要提示方式与使用过程}
+主要提示围绕“读取题面及附件，建立可复现的微网购电与储能滚动调度模型”“依据真实计算记录撰写论文，不编造数值”“检查2026年论文格式、引用、附录与PDF版面”等任务展开。使用过程包括：读取工作区材料，生成或修改代码与论文源文件，执行程序和LaTeX编译，最后对输出PDF逐页检查。
+
+\section{采纳、修改与验证}
+AI输出不作为未经检查的最终结论。所有数值均由固定随机种子的程序运行结果记录提供，并通过1,337项约束回代、摘要与正文关键数值比对、LaTeX两遍编译和PDF逐页渲染检查进行技术验证。模型解释、结算口径和最终表述仍须由参赛队在提交前逐项人工复核并承担责任；发现与题面或程序结果冲突的内容应以题面和可复现计算为准。
+
+参赛队应在提交前阅读论文、复核运行结果及本说明，并确认本说明准确反映实际使用情况。
+\end{document}

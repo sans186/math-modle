@@ -1,0 +1,39 @@
+\subsection*{支撑材料文件列表}
+支撑材料压缩包包含以下内容：
+\begin{itemize}
+\item \path{code/run_all.py}（完整可运行源程序）与\path{code/README.md}（环境和运行说明）；
+\item \path{code/outputs/records/}（参数、预测、逐日指标和约束检查）与\path{code/outputs/results/}（五个结果工作簿）；
+\item \path{figures/}（论文图及其CSV数据源）和《人工智能工具使用详情》PDF。
+\end{itemize}
+赛题给出的原始附件不重复收入支撑材料。
+
+\subsection*{复现说明与核心接口}
+本文结果由同一程序从原始工作簿生成。随机种子固定为20260910，核心参数为$\Delta t=1/6$小时、$\eta_c=\eta_d=0.9$、$S\in[1200,10800]$ kWh、充放电功率上限5,000 kW、滚动残差分位数0.80。核心LP接口如下：
+\begin{lstlisting}[language=Python]
+def optimize_schedule(net_kwh, price, s0,
+                      terminal_eq=None, terminal_min=6000,
+                      plan_ref=None):
+    # Variables: grid, charge, discharge, SOC.
+    # Adjustment mode adds upward/downward deviations.
+    res = linprog(cobj, A_ub=Aub, b_ub=bub,
+                  A_eq=Aeq, b_eq=beq, bounds=bounds,
+                  method="highs",
+                  options={"dual_feasibility_tolerance": 1e-8,
+                           "primal_feasibility_tolerance": 1e-8})
+    if not res.success:
+        raise RuntimeError(res.message)
+    return checked_schedule(res.x)
+\end{lstlisting}
+在项目根目录执行以下命令可从零读取附件、完成数据门禁、求解四问、回代约束并重建结果工作簿与数据图：
+\begin{lstlisting}[language=bash]
+MPLCONFIGDIR=.mplconfig python3 code/run_all.py
+\end{lstlisting}
+在\texttt{paper}目录连续执行两次以下命令可重建论文：
+\begin{lstlisting}[language=bash]
+xelatex -interaction=nonstopmode main.tex
+xelatex -interaction=nonstopmode main.tex
+\end{lstlisting}
+
+\subsection*{完整源程序}
+以下为生成全部结果、记录与数据图的完整可运行源程序。
+\lstinputlisting[language=Python,basicstyle=\ttfamily\tiny]{../code/run_all.py}

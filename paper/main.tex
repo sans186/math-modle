@@ -1,0 +1,34 @@
+% !TEX program = xelatex
+\documentclass[fontset=fandol,12pt,a4paper]{ctexart}
+\usepackage[a4paper,top=2.5cm,bottom=2.5cm,left=2.5cm,right=2.5cm]{geometry}
+\usepackage{amsmath,amssymb,bm}
+\usepackage{booktabs,array,longtable,multirow}
+\usepackage{graphicx,float,subcaption}
+\usepackage{xcolor,listings}
+\usepackage[hidelinks]{hyperref}
+\usepackage{titlesec,tocloft}
+\IfFontExistsTF{Times New Roman}{\setmainfont{Times New Roman}}{}
+\IfFontExistsTF{Menlo}{\setmonofont{Menlo}}{}
+\linespread{1.30}\setlength{\parindent}{2em}\setlength{\parskip}{0pt}
+\setlength{\emergencystretch}{2em}
+\ctexset{section/number=\chinese{section},subsection/number=\arabic{section}.\arabic{subsection},subsubsection/number=\arabic{section}.\arabic{subsection}.\arabic{subsubsection}}
+\titleformat{\section}{\centering\zihao{3}\heiti\bfseries}{\chinese{section}、}{0.5em}{}
+\titleformat{\subsection}{\zihao{4}\heiti\bfseries}{\arabic{section}.\arabic{subsection}}{0.6em}{}
+\titleformat{\subsubsection}{\zihao{-4}\heiti\bfseries}{\arabic{section}.\arabic{subsection}.\arabic{subsubsection}}{0.6em}{}
+\lstset{basicstyle=\ttfamily\scriptsize,backgroundcolor=\color{black!3},frame=single,breaklines=true,showstringspaces=false,columns=fullflexible}
+\newcommand{\yuan}{\text{元}}\newcommand{\kwh}{\mathrm{kWh}}\newcommand{\kw}{\mathrm{kW}}
+\newcommand{\papertitle}[1]{\begin{center}{\zihao{2}\heiti\bfseries #1}\end{center}\vspace{0.8em}}
+\newcommand{\abstractcn}[2]{\begin{center}{\zihao{3}\heiti\bfseries 摘要}\end{center}#1\par\vspace{0.8em}{\heiti\bfseries 关键词：}#2\newpage}
+\pagestyle{plain}
+\begin{document}
+\setcounter{page}{1}
+\papertitle{面向预测不确定性的微网购电与储能滚动调度}
+\abstractcn{本文研究含光伏、储能与外部电网的微网购电调度问题。首先统一建立以10分钟为步长的能量平衡与储能状态线性规划模型，并通过数据门禁核验365日、144时段的负荷、光伏和电价数据。问题一在确定性曲线下求解日内调度，购电费为35,126.95元，较无储能基线48,052.05元降低26.90\%。问题二采用严格向前滚动的同星期中位数与最近7日中位数融合预测，并叠加历史净负荷残差80\%分位安全裕度；334日回测费用为15,391,996.17元，较简单点预测无储能基线降低22.96\%，紧急购电由739,783.33 kWh降至427,994.14 kWh。问题三在0:00、6:00、12:00、18:00更新剩余时段，冻结已执行决策并继承SOC；滚动策略将紧急购电降至410,727.00 kWh，但因调整费使总费用升至16,258,910.51元，高于不调整方案15,818,394.81元。问题四以历史价格滚动预测扩展模型，价格预测MAE为0.0504元/kWh；问题4-2费用为16,163,346.40元，问题4-3费用为16,977,176.53元。全部1,337项约束回代均通过。结果表明，储能削峰填谷与分位裕度能有效降低费用和缺电风险，但更频繁的信息更新只有在预测收益超过调整罚金时才具有经济价值。}{微网调度\quad 线性规划\quad 滚动预测\quad 储能\quad 鲁棒裕度}
+\input{sections/1_restatement}\input{sections/2_analysis}\input{sections/3_assumptions}
+\input{sections/4_symbols}\input{sections/5_problem1}\input{sections/6_problem2}
+\input{sections/7_problem3}\input{sections/8_problem4}\input{sections/9_sensitivity}
+\input{sections/10_evaluation}
+\input{sections/11_ai_declaration}
+\input{sections/12_references}
+\newpage\section*{附录：核心实现与复现}\addcontentsline{toc}{section}{附录：核心实现与复现}\input{sections/A_code}
+\end{document}
